@@ -1,6 +1,6 @@
 extension Parsing on String {
   int toInt() {
-    return int.parse(this);
+    return double.parse(this).toInt();
   }
 
   double toDouble() {
@@ -8,8 +8,14 @@ extension Parsing on String {
   }
 
   bool toBool() {
-    return (this == "true" || toInt() > 0);
+    if (toLowerCase() == "true") {
+      return true;
+    }
+
+    try {
+      return toDouble() != 0;
+    } catch (e) {
+      return false;
+    }
   }
 }
-
-
