@@ -3,4 +3,4 @@
 /// More dartdocs go here.
 library;
 
-export "src/string_mixin.dart";
+export "src/string_extension.dart";
