@@ -26,6 +26,19 @@ class Matrix2<T> {
     return Matrix2<T>(rows, cols)..data = dataCopy;
   }
 
+  factory Matrix2.fromString(
+      String data, String rowSeparator, String colSeparator) {
+    List<List<String>> dataList = [];
+
+    final rowsString = data.split(rowSeparator);
+
+    for (var rowString in rowsString) {
+      dataList.add(rowString.split(colSeparator));
+    }
+
+    return Matrix2.fromList(dataList as List<List<T>>);
+  }
+
   T operator [](final Vec2 vec) {
     if (vec.x < 0 || vec.x >= cols) {
       throw RangeError("x must be between 0 and $cols");
