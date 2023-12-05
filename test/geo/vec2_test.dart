@@ -1,4 +1,4 @@
-import "package:obni_utils/src/geo/vec2.dart";
+import "package:obni_utils/src/geo/vec2_tuple.dart";
 import "package:test/test.dart";
 
 void main() {

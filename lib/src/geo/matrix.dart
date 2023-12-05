@@ -1,4 +1,4 @@
-import "package:obni_utils/src/geo/vec2.dart";
+import "package:obni_utils/src/geo/vec2_class.dart";
 
 class Matrix2<T> {
   final int rows;
@@ -28,14 +28,12 @@ class Matrix2<T> {
 
   factory Matrix2.fromString(
       String data, String rowSeparator, String colSeparator) {
-    List<List<String>> dataList = [];
-
-    final rowsString = data.split(rowSeparator);
-
-    for (var rowString in rowsString) {
-      dataList.add(rowString.split(colSeparator));
+    if (T != String) {
+      throw UnsupportedError("This constructor is only for String type");
     }
 
+    List<List<String>> dataList =
+        data.split(rowSeparator).map((row) => row.split(colSeparator)).toList();
     return Matrix2.fromList(dataList as List<List<T>>);
   }
 
@@ -52,7 +50,7 @@ class Matrix2<T> {
   }
 
   T at(int x, int y) {
-    return this[(x, y)];
+    return this[Vec2(x, y)];
   }
 
   T? atOrNull(int x, int y) {
@@ -64,26 +62,26 @@ class Matrix2<T> {
       return null;
     }
 
-    return this[(x, y)];
+    return this[Vec2(x, y)];
   }
 
   void iterate(void Function(T value, Vec2 vec) callback) {
     for (var y = 0; y < rows; ++y) {
       for (var x = 0; x < cols; ++x) {
-        callback(this[(x, y)], (x, y));
+        callback(this[Vec2(x, y)], Vec2(x, y));
       }
     }
   }
 
   void iterateRow(int y, void Function(T value, int x) callback) {
     for (var x = 0; x < cols; ++x) {
-      callback(this[(x, y)], x);
+      callback(this[Vec2(x, y)], x);
     }
   }
 
   void iterateCol(int x, void Function(T value, int y) callback) {
     for (var y = 0; y < rows; ++y) {
-      callback(this[(x, y)], y);
+      callback(this[Vec2(x, y)], y);
     }
   }
 
@@ -99,7 +97,7 @@ class Matrix2<T> {
         if (x == vec.x && y == vec.y) {
           continue;
         }
-        callback(this[(x, y)], (x, y));
+        callback(this[Vec2(x, y)], Vec2(x, y));
       }
     }
   }
@@ -119,7 +117,7 @@ class Matrix2<T> {
         if (x != vec.x && y != vec.y) {
           continue;
         }
-        callback(this[(x, y)], (x, y));
+        callback(this[Vec2(x, y)], Vec2(x, y));
       }
     }
   }

@@ -5,7 +5,7 @@ void main() {
   group("Matrix2.fromString Tests", () {
     test("Creates Matrix from String with Custom Separators", () {
       String data = "1,2,3;4,5,6;7,8,9";
-      var matrix = Matrix2.fromString(data, ";", ",");
+      Matrix2<String> matrix = Matrix2.fromString(data, ";", ",");
 
       expect(
           matrix.data,
@@ -18,7 +18,7 @@ void main() {
 
     test("Handles Empty String", () {
       String data = "";
-      var matrix = Matrix2.fromString(data, ";", ",");
+      Matrix2<String> matrix = Matrix2.fromString(data, ";", ",");
 
       expect(
           matrix.data,
@@ -31,7 +31,7 @@ void main() {
 
     test("Handles Single Row", () {
       String data = "1,2,3";
-      var matrix = Matrix2.fromString(data, ";", ",");
+      Matrix2<String> matrix = Matrix2.fromString(data, ";", ",");
 
       expect(
           matrix.data,
@@ -42,14 +42,16 @@ void main() {
 
     test("Handles Uneven Rows", () {
       String data = "1,2;3,4,5;6";
-      var matrix = Matrix2.fromString(data, ";", ",");
 
-      expect(() => matrix.data, throwsArgumentError);
+      expect(() {
+        Matrix2<String> a = Matrix2.fromString(data, ";", ",");
+        a.cols;
+      }, throwsArgumentError);
     });
 
     test("Works with Different Separators", () {
       String data = "1 2|3 4";
-      var matrix = Matrix2.fromString(data, "|", " ");
+      Matrix2<String> matrix = Matrix2.fromString(data, "|", " ");
 
       expect(
           matrix.data,

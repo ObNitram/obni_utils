@@ -82,6 +82,19 @@ extension MultiSpliter on String {
 
 extension IterableString on String {
   Iterable<String> get iterable {
-    return split("");
+    return runes.map((rune) => String.fromCharCode(rune)).toList();
+  }
+}
+
+extension ToList on String {
+  List<int> toListInt([String str = " "]) {
+    List<int> intList = [];
+    for (var e in split(str)) {
+      if (e.isInt()) {
+        intList.add(e.toInt());
+      }
+    }
+
+    return intList;
   }
 }

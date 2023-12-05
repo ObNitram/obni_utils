@@ -272,7 +272,7 @@ void main() {
     test("String with special characters should be correctly iterable", () {
       String specialCharString = "😊🚀";
       expect(specialCharString.iterable, equals(["😊", "🚀"]));
-    }, skip: "Split don't handle special characters");
+    });
 
     test("Long string should be correctly split into iterable", () {
       String longString = "Hello, World!";
@@ -302,6 +302,26 @@ void main() {
         characters.add(char);
       }
       expect(characters, equals(["t", "e", "s", "t"]));
+    });
+  });
+
+  group("String toListInt Tests", () {
+    test("Converts a string of numbers separated by spaces to List<int>", () {
+      expect("1 2 3".toListInt(), equals([1, 2, 3]));
+    });
+
+    test("Converts a string of numbers with a custom separator to List<int>",
+        () {
+      expect("1,2,3".toListInt(","), equals([1, 2, 3]));
+    });
+
+    test("Handles empty string", () {
+      expect("".toListInt(), isEmpty);
+      expect("rs dga sfWE GADF G".toListInt(), isEmpty);
+    });
+
+    test("Converts string to List<int> and ignores non-integer values", () {
+      expect("1 a 3".toListInt(), equals([1, 3]));
     });
   });
 }
