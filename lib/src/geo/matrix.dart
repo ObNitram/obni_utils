@@ -1,4 +1,4 @@
-import "package:obni_utils/src/geo/vec2_class.dart";
+import "package:obni_utils/src/geo/vec2.dart";
 
 class Matrix2<T> {
   final int rows;

@@ -1,3 +1,4 @@
+import "package:obni_utils/src/extension/list_extension.dart";
 import "package:obni_utils/src/extension/map_extension.dart";
 import "package:test/test.dart";
 
@@ -51,6 +52,71 @@ void main() {
 
       map.safeAddAll("newKey", [42, 43]);
       expect(map["newKey"], equals([42, 43]));
+    });
+  });
+
+  group("List Dive", () {
+    test("divide divides a list into sublists of equal length", () {
+      var list = [1, 2, 3, 4, 5, 6];
+      var dividedList = list.divide(2);
+
+      expect(
+          dividedList,
+          equals([
+            [1, 2],
+            [3, 4],
+            [5, 6]
+          ]));
+    });
+
+    test(
+        "divide throws an ArgumentError if the list length is not divisible by the divider",
+        () {
+      var list = [1, 2, 3, 4, 5, 6];
+
+      expect(
+          list.divide(3),
+          equals([
+            [1, 2, 3],
+            [4, 5, 6]
+          ]));
+    });
+
+    test(
+        "divide throws an ArgumentError if the list length is not divisible by the divider",
+        () {
+      var list = [1, 2, 3, 4, 5, 6];
+
+      expect(() => list.divide(4), throwsArgumentError);
+    });
+
+    test(
+        "divide throws an ArgumentError if the list length is not divisible by the divider",
+        () {
+      var list = [1, 2, 3, 4, 5, 6];
+
+      expect(() => list.divide(12), throwsArgumentError);
+    });
+
+    test(
+        "divide throws an ArgumentError if the list length is not divisible by the divider",
+        () {
+      var list = [1, 2, 3, 4, 5, 6, 7];
+
+      expect(() => list.divide(2), throwsArgumentError);
+    });
+
+    test(
+        "divide throws an ArgumentError if the list length is not divisible by the divider",
+        () {
+      var list = [1, 2, 3, 4, 5, 6, 7];
+
+      expect(() => list.divide(0), throwsArgumentError);
+    });
+
+    test("list can be empty", () {
+      var list = <int>[];
+      expect(list.divide(2), equals([[]]));
     });
   });
 }

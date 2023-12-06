@@ -1,10 +1,18 @@
 import "dart:math";
 
 class Vec2 {
-  final int x;
-  final int y;
+  int x, y;
 
   Vec2(this.x, this.y);
+
+  Vec2.fromList(List<int> list)
+      : assert(list.length == 2),
+        x = list[0],
+        y = list[1];
+
+  List<int> toList() {
+    return [x, y];
+  }
 
   Vec2 operator +(Vec2 other) {
     return Vec2(x + other.x, y + other.y);

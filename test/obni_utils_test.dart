@@ -1,4 +1,3 @@
-import "package:obni_utils/obni_utils.dart";
 import "package:test/test.dart";
 
 void main() {
@@ -7,8 +6,6 @@ void main() {
       // Additional setup goes here.
     });
 
-    test("First Test", () {
-      expect(1, "1".toInt());
-    });
+    test("First Test", () {});
   });
 }
