@@ -1,4 +1,5 @@
-import "package:obni_utils/src/geo/range.dart";
+import "package:obni_utils/src/range/range.dart";
+import "package:obni_utils/src/range/range_extension.dart";
 import "package:test/test.dart";
 
 void main() {
