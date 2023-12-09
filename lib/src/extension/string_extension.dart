@@ -98,3 +98,27 @@ extension ToList on String {
     return intList;
   }
 }
+
+extension InfinitIteratorExtension on String {
+  Iterator<String> get infinitIterator {
+    return InfinitCharIterator(this);
+  }
+}
+
+class InfinitCharIterator implements Iterator<String> {
+  final String _string;
+  int _index = 0;
+
+  InfinitCharIterator(this._string);
+
+  @override
+  String get current {
+    return _string[_index];
+  }
+
+  @override
+  bool moveNext() {
+    _index = (_index + 1) % _string.length;
+    return true;
+  }
+}
